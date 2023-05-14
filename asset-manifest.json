@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/IMDB-clone/static/css/main.2fd1ba9a.css",
+    "main.js": "/IMDB-clone/static/js/main.ade950bd.js",
+    "static/media/black-texture.jpg": "/IMDB-clone/static/media/black-texture.7a72899a0e751ec1d69b.jpg",
+    "static/media/first-screen-slider.jpg": "/IMDB-clone/static/media/first-screen-slider.1a25e4ebcc306d821554.jpg",
+    "static/media/stripes-background.jpg": "/IMDB-clone/static/media/stripes-background.304c850e65645232f20e.jpg",
+    "static/media/amazon-logo.svg": "/IMDB-clone/static/media/amazon-logo.8ae8cb81d8e689f51b4883b982f103ba.svg",
+    "static/media/icons-sprite.svg": "/IMDB-clone/static/media/icons-sprite.2881e940faea5b591c19a4da209bcee9.svg",
+    "static/media/imdb-pro-icon.svg": "/IMDB-clone/static/media/imdb-pro-icon.95a1d0dddb8f9d05f30f96ee7414726e.svg",
+    "static/media/media-sprite.svg": "/IMDB-clone/static/media/media-sprite.1349238731464561dd447fa2aca17324.svg",
+    "static/media/logo.svg": "/IMDB-clone/static/media/logo.7c2ef575a788b7d191c9b6312e7095e7.svg",
+    "static/media/slick.svg": "/IMDB-clone/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/IMDB-clone/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/IMDB-clone/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/IMDB-clone/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/IMDB-clone/index.html",
+    "static/media/user-icon.svg": "/IMDB-clone/static/media/user-icon.037fc7e0ef4a1d4fbb46c4354e4b6bd7.svg",
+    "static/media/burger-icon.svg": "/IMDB-clone/static/media/burger-icon.55da4753d31df14ba711790d14f8fd89.svg",
+    "main.2fd1ba9a.css.map": "/IMDB-clone/static/css/main.2fd1ba9a.css.map",
+    "main.ade950bd.js.map": "/IMDB-clone/static/js/main.ade950bd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2fd1ba9a.css",
+    "static/js/main.ade950bd.js"
+  ]
+}
