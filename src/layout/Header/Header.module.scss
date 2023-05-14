@@ -1,0 +1,25 @@
+@import "../../styles/vars.scss";
+
+.header {
+    position: relative;
+  
+    background: $bg-color-main;
+    color: $color-main;
+    margin-bottom: 15px;
+     &__container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+}
+
+
+@media screen and (max-width: 600px) {
+    .header {
+
+        &__container {
+            gap: 4px;
+        }
+    }
+}

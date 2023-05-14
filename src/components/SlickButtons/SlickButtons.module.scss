@@ -1,0 +1,27 @@
+@import "../../styles/vars.scss";
+
+.slickArrow {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 64px;
+    border: 1px solid $color-main;
+    border-radius: 6px;
+    background-color: $bg-transp-color-main;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 4;
+    cursor: pointer;
+    & use {
+        fill: $color-main;
+        transition: all 0.5s;
+    }
+    &:hover use {
+        fill: $decoration-color-main;
+    }
+}
+.slickPrev {
+    transform: rotate(180deg);
+}

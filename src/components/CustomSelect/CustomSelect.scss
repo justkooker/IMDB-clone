@@ -1,0 +1,49 @@
+@import "../../styles/vars.scss";
+
+.custom-select {
+    &__control {
+        align-items: center !important;
+        min-width: max-content !important;
+        height: 33px !important;
+        min-height: 33px !important;
+        padding-left: 4px !important;
+        font-weight: 500 !important;
+        border-top-right-radius: 0 !important;
+        border-bottom-right-radius: 0 !important;
+        border: none !important;
+        border-right: 1px solid lighten($bg-color-main, 80%) !important;
+        &:hover {
+            cursor: pointer !important;
+        }
+        &--is-selected {
+            background: none !important;
+        }
+        &--is-focused {
+            box-shadow: none !important;
+        }
+    }
+
+    &__indicator-separator {
+        display: none !important;
+    }
+    &__indicator {
+        padding: 0 4px !important;
+    }
+    &__value-container {
+        padding: 0 !important;
+    }
+    &__input-container {
+        margin: 0 !important;
+    }
+    &__menu {
+        width: 200px !important;
+        color: #ffffff !important;
+        background-color: $bg-color-main !important;
+    }
+    &__option {
+        cursor: pointer !important;
+        &--is-focused {
+            background-color: lighten($bg-color-main, 4%) !important;
+        }
+    }
+}

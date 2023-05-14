@@ -1,0 +1,16 @@
+@import "../../styles/vars.scss";
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-size: 14px;
+    font-weight: 500;
+    background-color: inherit;
+    border: none;
+    color: inherit;
+    &:hover {
+        cursor: pointer;
+        background: lighten($bg-color-main, 4%);
+    }
+}

@@ -1,0 +1,10 @@
+@import '../../styles/vars.scss';
+.container {
+    position: relative;
+    text-align: center;
+    padding: 24px;
+    & button {
+        background-color: $bg-color-main-darken;
+        margin: 0 auto;
+    }
+}

@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&display=swap");
+@import "./mixins.scss";
+
+.container {
+    width: 100%;
+    max-width: 1140px;
+    padding: 0 15px;
+    margin: 0 auto;
+}
+.d-flex {
+    @include d-flex($jc: space-between, $ai: center);
+}
+.grid {
+    display: grid;
+    &_column-span-1 {
+        grid-column: span 1;
+    }
+    &_column-span-2 {
+        grid-column: span 2;
+    }
+    &_column-span-3 {
+        grid-column: span 3;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .grid {
+        &_column-span-2 {
+            grid-column: span 3;
+        }
+    }
+}

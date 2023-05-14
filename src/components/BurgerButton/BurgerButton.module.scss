@@ -1,0 +1,7 @@
+@import '../../styles/vars.scss';
+
+@media screen and (max-width:1024px) {
+    .container {
+        order: -1;
+    }
+}

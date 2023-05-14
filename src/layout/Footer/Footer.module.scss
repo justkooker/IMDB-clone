@@ -1,0 +1,41 @@
+.footer {
+    padding: 16px 0;
+}
+.media {
+    display: flex;
+    justify-content: center;
+    margin: 16px 0;
+}
+.links1,
+.links2 {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 8px;
+    letter-spacing: 0.03em;
+    line-height: 1.5;
+    & a:hover {
+        text-decoration: underline;
+    }
+    & a {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        line-height: 1.5;
+        letter-spacing: 0.03em;
+    }
+}
+.amazonLogo {
+    display: flex;
+    justify-content: center;
+    margin: 26px;
+}
+.copyright {
+    font-size: 0.75rem;
+    line-height: 1.33;
+    letter-spacing: 0.03em;
+    text-align: center;
+    opacity: 0.7;
+}

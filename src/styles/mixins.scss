@@ -1,0 +1,8 @@
+@mixin d-flex($jc: null, $ai: null, $fd: null,$as:null, $gap: null) {
+    display: flex;
+    justify-content: $jc;
+    align-items: $ai;
+    flex-direction: $fd;
+    align-self: $as;
+    gap: $gap;
+}

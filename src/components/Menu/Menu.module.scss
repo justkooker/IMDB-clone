@@ -1,0 +1,161 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/vars.scss";
+
+.container {
+    width: 100%;
+    max-width: 1024px;
+    margin: 0 auto;
+}
+.navMenu {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: lighten($bg-color-main, 4%);
+    padding: 32px 0 64px;
+    transition: top 0.4s;
+    overflow-y: hidden;
+    z-index: 5;
+    transition: left 0.4s;
+    &_opened {
+        top: 0;
+    }
+    &_closed {
+        top: -102%;
+        @media screen and (max-width: 1024px) {
+            top: 0;
+            left: -100%;
+        }
+    }
+    @media screen and (max-width: 1024px) {
+        padding: 0;
+        width: 280px;
+        &:after {
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: $bg-color-main ;
+            opacity: 0.5;
+            z-index: 1;
+
+        }
+    }
+}
+
+.navHeader {
+    @include d-flex($jc: space-between);
+    @media screen and (max-width: 1024px) {
+        position: relative;
+        height: 56px;
+        background-image: url(../../assets/img/stripes-background.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        transform: rotate(180deg);
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: $bg-color-main;
+            opacity: 0.5;
+        }
+    }
+    &__closeBtn {
+        position: relative;
+        align-self: center;
+        width: 48px;
+        height: 48px;
+        background-color: $decoration-color-main;
+        border-radius: 50%;
+        &:hover {
+            cursor: pointer;
+            background-color: darken($decoration-color-main, 10%);
+        }
+
+        & svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        @media screen and (max-width: 1024px) {
+            background-color: transparent;
+            &:hover {
+                background-color: $color-main-transparent;
+            }
+            &:hover use {
+                background-color: $color-main;
+            }
+        }
+    }
+}
+.menu {
+    @include d-flex($jc: space-between);
+    flex-wrap: wrap;
+    height: 100%;
+    list-style: none;
+    color: #ffffff;
+    text-transform: capitalize;
+
+    &__item {
+        @include d-flex($fd: column, $gap: 15px);
+        justify-content: flex-start;
+        margin-left: 0;
+        letter-spacing: 0.05px;
+        overflow: hidden;
+        &:nth-child(4),
+        &:nth-child(6) {
+            align-items: center;
+        }
+        & > dd:hover {
+            text-decoration: underline;
+        }
+        @media screen and (max-width: 1024px) {
+            margin: 8px 16px;
+            cursor: pointer;
+            transition: all 0.3s;
+            &:hover use {
+                opacity: 1;
+            }
+        }
+    }
+    &__title {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-right: auto;
+        @media screen and (max-width: 1024px) {
+            font-size: 1rem;
+        }
+    }
+    & dt {
+        @include d-flex($ai: center, $gap: calc(40px - 24px));
+    }
+    & > dd {
+        @include d-flex($fd: column);
+        flex-basis: 33%;
+        margin-left: 0;
+        max-height: 350px;
+        &:nth-child(4),
+        &:nth-child(6) {
+            justify-content: end;
+        }
+    }
+
+    @media screen and (max-width: 1024px) {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        height: auto;
+        & > dd:nth-child(4),
+        dd:nth-child(6) {
+            justify-content: start;
+        }
+    }
+}

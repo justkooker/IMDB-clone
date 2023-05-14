@@ -1,0 +1,19 @@
+@import "../../styles/vars.scss";
+
+.watchlistIcon {
+    position: absolute;
+    top: 0;
+    left: 0;
+   
+    cursor: pointer;
+    &__flagIcon use {
+        transition: all 0.3s;
+    }
+   
+    &__plusIcon {
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

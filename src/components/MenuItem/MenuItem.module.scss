@@ -1,0 +1,56 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/vars.scss";
+.menu {
+    &__item {
+        @include d-flex($fd: column, $gap: 15px);
+        justify-content: flex-start;
+        margin-left: 0;
+        letter-spacing: 0.05px;
+        transition: height 0.2s;
+        overflow: hidden;
+        &:nth-child(4),
+        &:nth-child(6) {
+            align-items: center;
+        }
+        & > dd:hover {
+            text-decoration: underline;
+        }
+        @media screen and (max-width: 1024px) {
+            margin: 8px 16px;
+            cursor: pointer;
+            transition: max-height 0.4s;
+            & svg {
+                transition: transform 0.2s;
+            }
+            & use {
+                opacity: 0.5;
+            }
+            &:hover use {
+                opacity: 1;
+            }
+        }
+    }
+    &__title {
+        margin: 0;
+        font-size: 1.5rem;
+        font-weight: 500;
+        margin-right: auto;
+        transition: all 0.2s;
+        @media screen and (max-width: 1024px) {
+            font-size: 1rem;
+        }
+    }
+    & dt {
+        @include d-flex($ai: center, $gap: calc(40px - 24px));
+    }
+    & > dd {
+        @include d-flex($fd: column);
+        flex-basis: 33%;
+        margin-left: 0;
+        max-height: 350px;
+        &:nth-child(4),
+        &:nth-child(6) {
+            justify-content: end;
+        }
+    }
+}

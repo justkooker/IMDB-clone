@@ -1,0 +1,103 @@
+@import "../../styles/vars.scss";
+.sliderContainer {
+    position: relative;
+    height: 100%;
+    margin-bottom: 25px;
+}
+.slide {
+    position: relative;
+    height: 100%;
+    cursor: pointer;
+    &__backgroundImage {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -2;
+    }
+    &:hover .info__play use {
+        fill: $decoration-color-main;
+    }
+    &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #00000058;
+        opacity: 0;
+        transition: all 0.5s;
+    }
+    &:hover::after {
+        opacity: 1;
+    }
+
+    &__img {
+        object-fit: contain;
+        width: 100%;
+        opacity: 0;
+    }
+}
+.info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-end;
+    gap: 15px;
+    width: 100%;
+    padding: 0 20px;
+    background: linear-gradient(180deg, rgba(254, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 40%, rgba(0, 0, 0, 1) 58%);
+    z-index: 1;
+
+    &__poster {
+        position: relative;
+        width: 100%;
+        max-width: 130px;
+        @media screen and (max-width: 1024px) {
+            max-width: 100px;
+        }
+        @media screen and (max-width: 600px) {
+            max-width: 70px;
+        }
+        &:hover {
+            cursor: auto;
+        }
+
+        & img {
+            object-fit: contain;
+            width: 100%;
+        }
+        &:hover .slide:after {
+            display: none;
+        }
+    }
+    &__play {
+        & use {
+            transition: all 0.5s;
+            fill: $color-main;
+        }
+    }
+    &__container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &__title {
+        font-size: 1.5em;
+        margin: 0;
+        @media screen and (max-width: 600px) {
+            font-size: 1.2em;
+        }
+    }
+    &__action {
+        font-size: 1.25em;
+        margin: 0;
+        @media screen and (max-width: 600px) {
+            font-size: 0.8em;
+        }
+    }
+}

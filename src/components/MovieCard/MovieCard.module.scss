@@ -1,0 +1,66 @@
+@import "../../styles/vars.scss";
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 8px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-color: darken($bg-color-main, 4%);
+    &:hover {
+        cursor: pointer;
+    }
+
+    &__poster {
+        width: 100%;
+    }
+    &__img {
+        position: relative;
+        object-fit: cover;
+        width: 100%;
+      
+    }
+    &__rateContainer {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    &__title {
+        height: 40px;
+        margin: 0 0 10px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    &__watchlistBtn {
+        color: $decoration-color-secondary;
+        margin-bottom: 10px;
+        & button {
+            background-color: lighten($bg-color-main, 4%);
+            width: 100%;
+
+            &:hover {
+                background-color: lighten($bg-color-main, 8%);
+            }
+        }
+    }
+    &__trailer {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        & button:first-child svg {
+            margin-left: -6px;
+        }
+    }
+}
+.info {
+    padding: 10px;
+}
+.watchlistIcon {
+    z-index: 2;
+}
+.loadingContainer {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
