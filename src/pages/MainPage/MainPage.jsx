@@ -9,7 +9,7 @@ import WatchlistSlider from '../../components/WatchlistSlider';
 const baseUrl = 'https://api.themoviedb.org/3/';
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-const MainPage = ({ watchlist, setWatchlist }) => {
+const MainPage = ({ watchlist, setWatchlist, updateWatchlist }) => {
 	const urlPopular = `${baseUrl}movie/popular?api_key=${API_KEY}`;
 	const urlTopRated = `${baseUrl}movie/top_rated?api_key=${API_KEY}`;
 
@@ -47,7 +47,11 @@ const MainPage = ({ watchlist, setWatchlist }) => {
 				popularMoviesSlider2={popularMoviesSlider2}
 				setWatchlist={setWatchlist}
 			/>
-			<TopPickSlider movieList={topPickMovies} setWatchlist={setWatchlist} />
+			<TopPickSlider
+				movieList={topPickMovies}
+				setWatchlist={setWatchlist}
+				updateWatchlist={updateWatchlist}
+			/>
 			<WatchlistSlider watchlist={watchlist} setWatchlist={setWatchlist} />
 		</div>
 	);

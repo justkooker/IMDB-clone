@@ -3,7 +3,7 @@ import sprite from '../../assets/svg/icons-sprite.svg';
 import scssVars from '../../styles/vars.scss';
 import styles from './ArrowTopic.module.scss';
 import { useState } from 'react';
-import { useResize } from '../../hooks/useResize';
+
 const ArrowTopick = ({
 	topic,
 	topicDescr = '',

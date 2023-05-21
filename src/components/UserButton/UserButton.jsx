@@ -10,7 +10,7 @@ const UserButton = () => {
 	return (
 		<Button
 			borderRadius={useResize().width > 600 ? '6px' : '50%'}
-			paddingTB={useResize().width > 600 ? '6px' : '16px'}
+			paddingTB={useResize().width > 600 ? 6 : 16}
 
 		>
 			<img src={userIcon} alt='User icon' />

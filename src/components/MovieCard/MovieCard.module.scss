@@ -12,21 +12,22 @@
         cursor: pointer;
     }
 
-    &__poster {
-        width: 100%;
-    }
     &__img {
         position: relative;
         object-fit: cover;
         width: 100%;
-      
+        aspect-ratio: 1/1.5;
     }
     &__rateContainer {
         display: flex;
         align-items: center;
         gap: 10px;
+        &:first-child {
+            cursor: auto;
+        }
     }
     &__title {
+        display: block;
         height: 40px;
         margin: 0 0 10px;
         overflow: hidden;

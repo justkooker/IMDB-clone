@@ -5,7 +5,7 @@ import { Button } from '../Button/Button';
 const BurgerButton = ({ toggleMenu }) => {
 	return (
 		<div className={styles.container}>
-			<Button onClick={toggleMenu} paddingTB='16px'>
+			<Button onClick={toggleMenu} paddingTB={useResize().width > 601 ? 6 : 16}>
 				<img
 					src={burgerIcon}
 					className={styles.burger__img}

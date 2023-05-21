@@ -1,24 +1,13 @@
 import classNames from 'classnames';
+import { useSelector } from 'react-redux';
 import MovieCard from '../../components/MovieCard/MovieCard';
-
+import MovieList from '../../components/MovieList';
 import styles from './WatchlistPage.module.scss';
 
-const WatchlistPage = ({ watchlist, setWatchlist }) => {
-	return (
-		<div className={classNames(styles.watchlist, 'container')}>
-			{watchlist.map(movie => {
-				return (
-					<div className={styles.watchlist__card}>
-						<MovieCard
-							key={movie.id}
-							movie={movie}
-							setWatchlist={setWatchlist}
-						/>
-					</div>
-				);
-			})}
-		</div>
-	);
+const WatchlistPage = ({ movieList, setWatchlist, updateWatchlist }) => {
+	const { watchlist } = useSelector(state => state);
+	console.log(watchlist);
+	return <MovieList movieList={watchlist} updateWatchlist={updateWatchlist} />;
 };
 
 export default WatchlistPage;

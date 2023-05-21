@@ -13,10 +13,9 @@
     height: 100vh;
     background-color: lighten($bg-color-main, 4%);
     padding: 32px 0 64px;
-    transition: top 0.4s;
     overflow-y: hidden;
     z-index: 5;
-    transition: left 0.4s;
+    transition: all 0.4s;
     &_opened {
         top: 0;
     }
@@ -30,19 +29,6 @@
     @media screen and (max-width: 1024px) {
         padding: 0;
         width: 280px;
-        &:after {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: $bg-color-main ;
-            opacity: 0.5;
-            z-index: 1;
-
-        }
     }
 }
 

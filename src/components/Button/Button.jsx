@@ -2,13 +2,14 @@ import styles from './Button.module.scss';
 
 export const Button = ({
 	onClick,
+	onKeyDown,
 	height = 'auto',
 	width = 'auto',
 	children,
 	textColor,
 	borderRadius = '6px',
-	paddingTB = '5px',
-	paddingLR = '16px',
+	paddingTB = 6,
+	paddingLR = 16,
 	customStyles
 }) => {
 	return (
@@ -16,12 +17,13 @@ export const Button = ({
 			style={{
 				color: textColor,
 				borderRadius: borderRadius,
-				padding: `${paddingTB} ${paddingLR}`,
+				padding: `${paddingTB}px ${paddingLR}px`,
 				height: height,
 				width: width,
 				...customStyles
 			}}
 			onClick={onClick}
+			onKeyDown={onKeyDown}
 			className={styles.button}
 		>
 			{children}

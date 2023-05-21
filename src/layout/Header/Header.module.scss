@@ -2,10 +2,11 @@
 
 .header {
     position: relative;
-  
+    padding: 10px 0;
     background: $bg-color-main;
     color: $color-main;
     margin-bottom: 15px;
+    z-index: 3;
      &__container {
             display: flex;
             justify-content: space-between;
@@ -17,7 +18,7 @@
 
 @media screen and (max-width: 600px) {
     .header {
-
+        padding: 4px 0;
         &__container {
             gap: 4px;
         }

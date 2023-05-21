@@ -7,6 +7,7 @@ import sprite from '../../assets/svg/icons-sprite.svg';
 import scssVars from '../../styles/vars.scss';
 import IconSprite from '../IconSprite';
 import MenuItem from '../MenuItem/MenuItem';
+
 const Menu = ({ toggleMenu, isOpenMenu }) => {
 	const body = document.body;
 	const [activeItemId, setActiveItemId] = useState(null);

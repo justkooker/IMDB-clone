@@ -13,13 +13,13 @@ import styles from './Header.module.scss';
 import imdbIcon from '../../assets/svg/imdb-pro-icon.svg';
 import SearchButton from '../../components/SearchButton/SearchButton';
 
-const Header = ({ toggleMenu, watchlist }) => {
+const Header = ({ toggleMenu, watchlist, setSearchlist }) => {
 	return (
 		<header className={styles.header}>
 			<div className={classNames('container', styles.header__container)}>
 				<Logo />
 				<BurgerButton toggleMenu={toggleMenu} />
-				<Search />
+				<Search setSearchlist={setSearchlist} />
 				{useResize > 1280 && (
 					<Button>
 						<a href='#'>
@@ -29,7 +29,7 @@ const Header = ({ toggleMenu, watchlist }) => {
 				)}
 
 				{useResize().width > 1280 && (
-					<Link to='/watchlist'>
+					<Link to='/IMDB-clone/watchlist'>
 						<WatchListButton watchlist={watchlist} />
 					</Link>
 				)}

@@ -49,7 +49,6 @@ const FIlmSLider = React.forwardRef((props, ref) => {
 								className={styles.slide__backgroundImage}
 								style={{
 									backgroundImage: `url(${backgroundImage})`,
-
 									backgroundSize: 'cover'
 								}}
 							></div>

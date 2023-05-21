@@ -1,0 +1,39 @@
+.watchlist {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-content: center;
+    row-gap: 25px;
+
+    &__card {
+        width: 100%;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .watchlist {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media screen and (max-width: 998px) {
+    .watchlist {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media screen and (max-width: 650px) {
+    .watchlist {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media screen and (max-width: 500px) {
+    .watchlist {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media screen and (max-width: 420px) {
+    .watchlist {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
