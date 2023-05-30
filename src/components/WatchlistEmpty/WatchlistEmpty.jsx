@@ -1,14 +1,15 @@
-import IconSprite from '../IconSprite';
 import WatchlistIcon from '../WatchlistIcon';
-import sprite from '../../assets/svg/icons-sprite.svg';
 import styles from './WatchlistEmpty.module.scss';
 import scssVars from '../../styles/vars.scss';
 import { Button } from '../Button/Button';
+import { Link } from 'react-router-dom';
 
 const WatchlistEmpty = ({ width, height }) => {
 	return (
 		<div className={styles.container}>
-			<WatchlistIcon width={width} height={height} position='relative' />
+			<Link to={'/IMDB-clone/watchlist'}>
+				<WatchlistIcon width={width} height={height} position='relative' />
+			</Link>
 			<p>Your watchlist is empty</p>
 			<p>Save shows and movies to keep track of what you want to watch.</p>
 			<Button textColor={scssVars.decorColorSecondary}>

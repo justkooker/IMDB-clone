@@ -17,6 +17,7 @@ export const getWatchlist = () => {
 export const addInWatchlist = async (id) => {
     const movie = await getMovieById(id);
     if (!isMovieInWatchlist(id)) {
+        movie.isInWathlist = true;
         const watchlist = await getWatchlist();
         localStorage.setItem('watchlist', JSON.stringify([...watchlist, movie]))
     } else return;
@@ -28,3 +29,4 @@ export const removeFromWatchlist = (id) => {
     localStorage.setItem('watchlist', JSON.stringify([...newWatchlist]))
 
 }
+

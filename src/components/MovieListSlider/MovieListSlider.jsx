@@ -1,16 +1,19 @@
 import { useEffect, useRef } from 'react';
 import Slider from 'react-slick';
+import { createAdditionlaId } from '../../helpers/additionalId';
 import MovieCard from '../MovieCard/MovieCard';
 import { PrevButton, NextButton } from '../SlickButtons/SlickButtons';
 import ArrowTopic from '../ArrowTopic';
 import styles from './MovieListSlider.module.scss';
+import { Link } from 'react-router-dom';
 
 const MovieListSlider = ({
 	movieList,
+	watchlist,
 	topic,
 	topicDescr,
 	setWatchlist,
-	updateWatchlist,
+	linkTo,
 	customSettings = {}
 }) => {
 	const sliderRef = useRef(null);
@@ -64,16 +67,20 @@ const MovieListSlider = ({
 
 	return (
 		<div className={styles.sliderContainer}>
-			<ArrowTopic topic={topic} topicDescr={topicDescr} arrow={true} />
+			<Link to={`/IMDB-clone/${linkTo}`}>
+				<ArrowTopic topic={topic} topicDescr={topicDescr} arrow={true} />
+			</Link>
 			<Slider {...settings} ref={sliderRef}>
 				{movieList.map(movie => {
 					return (
-						<MovieCard
-							key={movie.id}
-							movie={movie}
-							setWatchlist={setWatchlist}
-							updateWatchlist={updateWatchlist}
-						/>
+						<div key={`${movie.id}-${createAdditionlaId()}`}>
+							<MovieCard
+								key={`${movie.id}-${createAdditionlaId()}`}
+								movie={movie}
+								watchlist={watchlist}
+								setWatchlist={setWatchlist}
+							/>
+						</div>
 					);
 				})}
 			</Slider>

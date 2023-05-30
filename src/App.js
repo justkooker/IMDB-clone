@@ -11,11 +11,10 @@ import './styles/commonStyles.scss';
 import './App.scss';
 import { useState, useEffect } from 'react';
 import MovieList from './components/MovieList';
-import WatchlistPage from './pages/WatchlistPage/WatchlistPage';
+
 
 
 function App() {
-
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [watchlist, setWatchlist] = useState([]);
   const [searchlist, setSearchlist] = useState([]);
@@ -23,18 +22,24 @@ function App() {
   useEffect(() => {
     let watchlist = getWatchlist();
     setWatchlist(watchlist);
-
   }, []);
 
-  const updateWatchlist =async () => {
-    const watchlist = getWatchlist();
-    setWatchlist(watchlist)
-  }
-
-  const toggleMenu = () => {
+  useEffect(() => {
+    document.addEventListener("keydown", toggleMenu);
+    return () => {
+      document.removeEventListener("keydown", toggleMenu);
+    };
+  }, []);
+  const toggleMenu = (e) => {
     setIsOpenMenu(!isOpenMenu);
+    if (isOpenMenu && e.key === "Escape") {
+      setIsOpenMenu(!isOpenMenu);
+      return;
+    }
     return;
   };
+
+
   return (
     <>
       <Menu toggleMenu={toggleMenu} isOpenMenu={isOpenMenu} />
@@ -44,14 +49,15 @@ function App() {
         watchlist={watchlist}
         setSearchlist={setSearchlist}
         setWatchlist={setWatchlist}
-        updateWatchlist={updateWatchlist}
       />
       <Routes basename='/IMDB-clone'>
-        <Route path="/IMDB-clone" element={<MainPage watchlist={watchlist} updateWatchlist={updateWatchlist}
+        <Route path="/IMDB-clone" element={<MainPage watchlist={watchlist}
           setWatchlist={setWatchlist} />} />
-        <Route path="/IMDB-clone/watchlist" element={<WatchlistPage movieList={watchlist} updateWatchlist={updateWatchlist}
+        <Route path="/IMDB-clone/watchlist" element={<MovieList movieList={watchlist}
           setWatchlist={setWatchlist} />} />
         <Route path="/IMDB-clone/search" element={<MovieList movieList={searchlist}
+          setWatchlist={setWatchlist} />} />
+        <Route path="/IMDB-clone/top-pick" element={<MovieList movieList={searchlist}
           setWatchlist={setWatchlist} />} />
       </Routes>
       <Footer />

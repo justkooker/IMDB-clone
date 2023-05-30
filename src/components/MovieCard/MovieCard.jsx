@@ -14,7 +14,7 @@ import {
 	removeFromWatchlist
 } from '../../helpers/localStorage';
 
-const MovieCard = ({ movie, setWatchlist, updateWatchlist }) => {
+const MovieCard = ({ movie, setWatchlist, previewMode = false }) => {
 	const {
 		id = '',
 		poster_path = '',
@@ -26,6 +26,7 @@ const MovieCard = ({ movie, setWatchlist, updateWatchlist }) => {
 		isMovieInWatchlist(id)
 	);
 	const [isLoading, setIsLoading] = useState(false);
+
 	const toggleWatchlist = id => {
 		setIsLoading(true);
 		setTimeout(() => {
@@ -34,14 +35,13 @@ const MovieCard = ({ movie, setWatchlist, updateWatchlist }) => {
 		if (isMovieInWatchlist(id)) removeFromWatchlist(id);
 		else addInWatchlist(id);
 		setIsInWatchlist(!isInWatchlist);
-		setWatchlist(getWatchlist());
 		setTimeout(() => {
-			updateWatchlist(getWatchlist());
+			setWatchlist(getWatchlist());
 		}, 500);
 	};
 
 	return (
-		<div key={movie.id} className={styles.card}>
+		<div className={styles.card}>
 			<div className={styles.watchlistIcon}>
 				<WatchlistIcon
 					width={32}
@@ -58,93 +58,96 @@ const MovieCard = ({ movie, setWatchlist, updateWatchlist }) => {
 							? `https://image.tmdb.org/t/p/original/${poster_path}`
 							: backdrop
 					}
-					alt='Image poster'
+					alt=''
 					className={styles.card__img}
 				/>
 			</div>
 
-			<div className={styles.info}>
-				<div className={styles.card__rateContainer}>
-					<div className={styles.card__rateContainer_yellow}>
-						<IconSprite
-							sprite={sprite}
-							id='filled-star'
-							fillColor={scssVars.decorColorMain}
-							width={16}
-						/>
-					</div>
-					<span className={styles.card__rate}>{vote_average}</span>
-					<Button paddingTB={0}>
-						<div className={styles.card__rateContainer_blue}>
+			{!previewMode && (
+				<div className={styles.info}>
+					<div className={styles.card__rateContainer}>
+						<div className={styles.card__rateContainer_yellow}>
 							<IconSprite
 								sprite={sprite}
-								id='empty-star'
-								fillColor={scssVars.decorColorSecondary}
+								id='filled-star'
+								fillColor={scssVars.decorColorMain}
 								width={16}
 							/>
 						</div>
-					</Button>
-				</div>
-				<a className={styles.card__title}>{title}</a>
-				<div className={styles.card__watchlistBtn}>
-					{isLoading ? (
-						<div className={styles.loadingContainer}>
-							<ClipLoader
-								size={34}
-								color={scssVars.decorColorSecondary}
-								loading={isLoading}
-							/>
-						</div>
-					) : isInWatchlist ? (
-						<Button onClick={() => toggleWatchlist(id)} width='100%'>
-							<IconSprite
-								sprite={sprite}
-								id='done-icon'
-								fillColor={scssVars.decorColorSecondary}
-								width={24}
-								height={24}
-							/>
-							<span>Watchlist</span>
+						<span className={styles.card__rate}>{vote_average}</span>
+						<Button paddingTB={0}>
+							<div className={styles.card__rateContainer_blue}>
+								<IconSprite
+									sprite={sprite}
+									id='empty-star'
+									fillColor={scssVars.decorColorSecondary}
+									width={16}
+								/>
+							</div>
 						</Button>
-					) : (
-						<Button onClick={() => toggleWatchlist(id)} width='100%'>
+					</div>
+					<a href='#' className={styles.card__title}>
+						{title}
+					</a>
+					<div className={styles.card__watchlistBtn}>
+						{isLoading ? (
+							<div className={styles.loadingContainer}>
+								<ClipLoader
+									size={34}
+									color={scssVars.decorColorSecondary}
+									loading={isLoading}
+								/>
+							</div>
+						) : (
+							<Button onClick={() => toggleWatchlist(id)} width='100%'>
+								{isInWatchlist ? (
+									<IconSprite
+										sprite={sprite}
+										id='done-icon'
+										fillColor={scssVars.decorColorSecondary}
+										width={24}
+										height={24}
+									/>
+								) : (
+									<IconSprite
+										sprite={sprite}
+										id='plus-icon'
+										fillColor={scssVars.colorMain}
+										width={24}
+										height={24}
+									/>
+								)}
+								<span>Watchlist</span>
+							</Button>
+						)}
+					</div>
+					<div className={styles.card__trailer}>
+						<Button paddingLR={8} paddingTB={0}>
 							<IconSprite
 								sprite={sprite}
-								id='plus-icon'
+								id='card-play-icon'
 								fillColor={scssVars.colorMain}
 								width={24}
-								height={24}
 							/>
-							<span>Watchlist</span>
+							<span>Trailer</span>
 						</Button>
-					)}
+						<Button
+							borderRadius='50%'
+							paddingLR={10}
+							paddingTB={10}
+							height={'fit-content'}
+						>
+							<IconSprite
+								sprite={sprite}
+								id='movie-info-icon'
+								fillColor={scssVars.colorMain}
+								width={27}
+								height={27}
+							/>
+						</Button>
+					</div>
 				</div>
-				<div className={styles.card__trailer}>
-					<Button paddingLR={8} paddingTB={0}>
-						<IconSprite
-							sprite={sprite}
-							id='card-play-icon'
-							fillColor={scssVars.colorMain}
-							width={24}
-						/>
-						<span>Trailer</span>
-					</Button>
-					<Button
-						borderRadius='50%'
-						paddingLR={10}
-						paddingTB={10}
-						height={'fit-content'}
-					>
-						<IconSprite
-							sprite={sprite}
-							id='movie-info-icon'
-							fillColor={scssVars.colorMain}
-							width={27}
-							height={27}
-						/>
-					</Button>
-				</div>
-			</div>
+			)}
 		</div>
 	);
 };

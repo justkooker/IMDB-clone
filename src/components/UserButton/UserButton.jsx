@@ -11,7 +11,6 @@ const UserButton = () => {
 		<Button
 			borderRadius={useResize().width > 600 ? '6px' : '50%'}
 			paddingTB={useResize().width > 600 ? 6 : 16}
-
 		>
 			<img src={userIcon} alt='User icon' />
 			{useResize().width > 600 && (

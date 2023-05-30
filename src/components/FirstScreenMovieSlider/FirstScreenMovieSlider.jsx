@@ -1,6 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
 import { useResize } from '../../hooks/useResize';
+import {
+	isMovieInWatchlist,
+	addInWatchlist,
+	getWatchlist,
+	removeFromWatchlist
+} from '../../helpers/localStorage';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -13,6 +19,8 @@ import styles from './FirstScreenMovieSlider.module.scss';
 import IconSprite from '../IconSprite';
 import { PrevButton, NextButton } from '../SlickButtons/SlickButtons';
 import WatchlistIcon from '../WatchlistIcon';
+import { useState } from 'react';
+import MovieCard from '../MovieCard/MovieCard';
 
 const FIlmSLider = React.forwardRef((props, ref) => {
 	const { popularMovies, nav, setWatchlist } = props;
@@ -35,6 +43,20 @@ const FIlmSLider = React.forwardRef((props, ref) => {
 		]
 	};
 	const iconSize = useResize().width > 600 ? 72 : 54;
+	const [isInWatchlist, setIsInWatchlist] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
+	const toggleWatchlist = id => {
+		setIsLoading(true);
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 500);
+		if (isMovieInWatchlist(id)) removeFromWatchlist(id);
+		else addInWatchlist(id);
+		setIsInWatchlist(!isInWatchlist);
+		setTimeout(() => {
+			setWatchlist(getWatchlist());
+		}, 500);
+	};
 	return (
 		<div className={classNames(styles.sliderContainer, 'grid_column-span-2')}>
 			<Slider asNavFor={nav} ref={ref} {...settings}>
@@ -59,20 +81,11 @@ const FIlmSLider = React.forwardRef((props, ref) => {
 							/>
 							<div className={styles.info}>
 								<div className={styles.info__poster}>
-									<img
-										src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`}
-										className={styles.info__img}
-										alt='Movie poster'
+									<MovieCard
+										movie={movie}
+										previewMode={true}
+										setWatchlist={setWatchlist}
 									/>
-									<div className={styles.info__watchlist}>
-										<WatchlistIcon
-											sprite={sprite}
-											id='watchlist-icon'
-											width={40}
-											height={74}
-											setWatchlist={setWatchlist}
-										/>
-									</div>
 								</div>
 								<div className='d-flex' style={{ gap: '10px' }}>
 									<div className={styles.info__play}>

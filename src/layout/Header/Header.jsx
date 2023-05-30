@@ -11,7 +11,6 @@ import LangButton from '../../components/LangButton/LangButton';
 
 import styles from './Header.module.scss';
 import imdbIcon from '../../assets/svg/imdb-pro-icon.svg';
-import SearchButton from '../../components/SearchButton/SearchButton';
 
 const Header = ({ toggleMenu, watchlist, setSearchlist }) => {
 	return (
@@ -20,8 +19,8 @@ const Header = ({ toggleMenu, watchlist, setSearchlist }) => {
 				<Logo />
 				<BurgerButton toggleMenu={toggleMenu} />
 				<Search setSearchlist={setSearchlist} />
-				{useResize > 1280 && (
-					<Button>
+				{useResize().width > 1280 && (
+					<Button paddingTB={9}>
 						<a href='#'>
 							<img src={imdbIcon} alt='Imdb pro icon' />
 						</a>

@@ -6,7 +6,7 @@ import sprite from '../../assets/svg/icons-sprite.svg';
 import scssVars from '../../styles/vars.scss';
 import MovieListSlider from '../MovieListSlider';
 
-const TopPickSlider = ({ movieList, setWatchlist, updateWatchlist }) => {
+const TopPickSlider = ({ movieList,watchlist, setWatchlist}) => {
 	return (
 		<div className='container'>
 			<div className={styles.titleContainer}>
@@ -25,10 +25,11 @@ const TopPickSlider = ({ movieList, setWatchlist, updateWatchlist }) => {
 
 			<MovieListSlider
 				movieList={movieList}
+				watchlist={watchlist}
+				linkTo='top-pick'
 				topic='Top picks'
 				topicDescr='TV shows and movies just for you'
 				setWatchlist={setWatchlist}
-				updateWatchlist={updateWatchlist}
 			/>
 		</div>
 	);

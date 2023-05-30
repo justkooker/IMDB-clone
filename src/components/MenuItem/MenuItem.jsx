@@ -24,7 +24,8 @@ const MenuItem = ({
 				borderBottom:
 					activeItemId !== id
 						? 'none'
-						: `1px solid ${scssVars.colorMainTransparent}`
+						: `1px solid ${scssVars.colorMainTransparent}`,
+				zIndex:4
 			}}
 		>
 			<dl

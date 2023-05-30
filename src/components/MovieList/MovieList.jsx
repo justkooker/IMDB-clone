@@ -3,7 +3,7 @@ import MovieCard from '../MovieCard/MovieCard';
 
 import styles from './MovieList.module.scss';
 
-const MovieList = ({ movieList, setWatchlist, updateWatchlist }) => {
+const MovieList = ({ movieList, setWatchlist }) => {
 	return (
 		<div className={classNames(styles.watchlist, 'container')}>
 			{movieList.length === 0 ? (
@@ -16,7 +16,6 @@ const MovieList = ({ movieList, setWatchlist, updateWatchlist }) => {
 								key={movie.id}
 								movie={movie}
 								setWatchlist={setWatchlist}
-								updateWatchlist={updateWatchlist}
 							/>
 						</div>
 					);

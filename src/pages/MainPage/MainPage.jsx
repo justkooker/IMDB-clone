@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-
+import { getPopularMovies } from '../../helpers/requests';
 import FirstScreen from '../../layout/FirstScreen/FirstScreen';
 import TopPickSlider from '../../components/TopPickSlider';
 
@@ -9,8 +9,7 @@ import WatchlistSlider from '../../components/WatchlistSlider';
 const baseUrl = 'https://api.themoviedb.org/3/';
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-const MainPage = ({ watchlist, setWatchlist, updateWatchlist }) => {
-	const urlPopular = `${baseUrl}movie/popular?api_key=${API_KEY}`;
+const MainPage = ({ watchlist, setWatchlist }) => {
 	const urlTopRated = `${baseUrl}movie/top_rated?api_key=${API_KEY}`;
 
 	const [popularMovies, setPopularMovies] = useState([]);
@@ -18,12 +17,7 @@ const MainPage = ({ watchlist, setWatchlist, updateWatchlist }) => {
 	const [topPickMovies, setTopPickMovies] = useState([]);
 
 	useEffect(() => {
-		fetch(urlPopular)
-			.then(response => response.json())
-			.then(data => data.results)
-			.then(movies => {
-				setPopularMovies(movies);
-			});
+		getPopularMovies().then(movies => setPopularMovies(movies));
 	}, []);
 	useEffect(() => {
 		if (popularMovies.length > 0) {
@@ -49,8 +43,8 @@ const MainPage = ({ watchlist, setWatchlist, updateWatchlist }) => {
 			/>
 			<TopPickSlider
 				movieList={topPickMovies}
+				watchlist={watchlist}
 				setWatchlist={setWatchlist}
-				updateWatchlist={updateWatchlist}
 			/>
 			<WatchlistSlider watchlist={watchlist} setWatchlist={setWatchlist} />
 		</div>

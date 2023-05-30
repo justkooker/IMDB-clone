@@ -8,6 +8,7 @@
         letter-spacing: 0.05px;
         transition: height 0.2s;
         overflow: hidden;
+        z-index: inherit;
         &:nth-child(4),
         &:nth-child(6) {
             align-items: center;
