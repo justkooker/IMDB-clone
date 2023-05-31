@@ -1,6 +1,6 @@
 {
 	"name": "project-react-spa",
-	"homepage": "https://justkooker.github.io/IMDB-clone",
+	"homepage": "https://justkooker.github.io/imdb-clone",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {

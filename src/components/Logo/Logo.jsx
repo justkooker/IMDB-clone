@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const Logo = () => {
 	return (
 		<div className={styles.logo}>
-			<Link to='/IMDB-clone/'>
+			<Link to='/imdb-clone/'>
 				<img src={logo} alt='Logo' className={styles.logo__img} />
 			</Link>
 		</div>

@@ -28,7 +28,7 @@ const Header = ({ toggleMenu, watchlist, setSearchlist }) => {
 				)}
 
 				{useResize().width > 1280 && (
-					<Link to='/IMDB-clone/watchlist'>
+					<Link to='/imdb-clone/watchlist'>
 						<WatchListButton watchlist={watchlist} />
 					</Link>
 				)}

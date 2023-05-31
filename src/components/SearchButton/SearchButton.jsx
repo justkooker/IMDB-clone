@@ -6,7 +6,7 @@ import sprite from '../../assets/svg/icons-sprite.svg';
 import scssVars from '../../styles/vars.scss';
 const SearchButton = ({ query, toggleInput, isActiveInput, getSearchlist }) => {
 	return (
-		<Link to={`/IMDB-clone/search`}>
+		<>
 			{useResize().width > 601 ? (
 				<Button
 					onClick={getSearchlist}
@@ -68,7 +68,7 @@ const SearchButton = ({ query, toggleInput, isActiveInput, getSearchlist }) => {
 					/>
 				</Button>
 			)}
-		</Link>
+		</>
 	);
 };
 

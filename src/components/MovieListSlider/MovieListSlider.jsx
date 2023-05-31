@@ -67,7 +67,7 @@ const MovieListSlider = ({
 
 	return (
 		<div className={styles.sliderContainer}>
-			<Link to={`/IMDB-clone/${linkTo}`}>
+			<Link to={`/imdb-clone/${linkTo}`}>
 				<ArrowTopic topic={topic} topicDescr={topicDescr} arrow={true} />
 			</Link>
 			<Slider {...settings} ref={sliderRef}>
@@ -77,7 +77,6 @@ const MovieListSlider = ({
 							<MovieCard
 								key={`${movie.id}-${createAdditionlaId()}`}
 								movie={movie}
-								watchlist={watchlist}
 								setWatchlist={setWatchlist}
 							/>
 						</div>

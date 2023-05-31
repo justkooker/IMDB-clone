@@ -19,15 +19,18 @@ const Search = ({ setSearchlist }) => {
 		return setIsActiveInput(!isActiveInput);
 	};
 	const getSearchlist = async () => {
+		if (query === '') return;
 		const response = await getMoviesByQuery(query, selectType);
 		setSearchlist(response);
+		navigate('/imdb-clone/search/');
+		return;
 	};
 	const getSearchlistByEnter = async e => {
+		if (query === '') return;
 		if (e.key === 'Enter') {
-			
 			const response = await getMoviesByQuery(query, selectType);
 			setSearchlist(response);
-			navigate('/IMDB-clone/search/');
+			navigate('/imdb-clone/search/');
 			return;
 		}
 	};

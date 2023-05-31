@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { useResize } from '../../hooks/useResize';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import styles from './Menu.module.scss';
 import sprite from '../../assets/svg/icons-sprite.svg';
@@ -26,14 +27,11 @@ const Menu = ({ toggleMenu, isOpenMenu }) => {
 	const toggleHoverState = () => {
 		setIsHovered(!isHovered);
 	};
-	const closeByEsc = (e) => {
-		console.log(e);
-	}
+	
 	return (
 		<>
 			<div
 				onClick={toggleMenu}
-				onKeyDown={(e)=>closeByEsc(e)}
 				className={styles.background}
 				style={{ display: !isOpenMenu ? 'none' : 'block' }}
 			></div>
@@ -46,9 +44,7 @@ const Menu = ({ toggleMenu, isOpenMenu }) => {
 			>
 				<header className={classNames(styles.navHeader, styles.container)}>
 					{useResize().width > 1024 && (
-						<a className={styles.navHeader__logo}>
-							<IconSprite sprite={sprite} id={'logo'} width={98} height={56} />
-						</a>
+						<IconSprite sprite={sprite} id={'logo'} width={98} height={56} />
 					)}
 					<div className={styles.navHeader__closeBtn} onClick={toggleMenu}>
 						<IconSprite

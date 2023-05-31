@@ -11,6 +11,7 @@ import './styles/commonStyles.scss';
 import './App.scss';
 import { useState, useEffect } from 'react';
 import MovieList from './components/MovieList';
+import { getTopRatedMovies } from './helpers/requests';
 
 
 
@@ -18,27 +19,31 @@ function App() {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [watchlist, setWatchlist] = useState([]);
   const [searchlist, setSearchlist] = useState([]);
+  const [topPickMovies, setTopPickMovies] = useState([]);
 
   useEffect(() => {
     let watchlist = getWatchlist();
     setWatchlist(watchlist);
+    getTopRatedMovies().then(movies => setTopPickMovies(movies))
   }, []);
 
-  useEffect(() => {
-    document.addEventListener("keydown", toggleMenu);
-    return () => {
-      document.removeEventListener("keydown", toggleMenu);
-    };
-  }, []);
-  const toggleMenu = (e) => {
+
+  const toggleMenu = () => {
     setIsOpenMenu(!isOpenMenu);
+    return;
+  };
+  const closeMenuByEsc = (e) => {
     if (isOpenMenu && e.key === "Escape") {
       setIsOpenMenu(!isOpenMenu);
       return;
     }
-    return;
-  };
-
+  }
+  useEffect(() => {
+    document.addEventListener("keydown", closeMenuByEsc);
+    return () => {
+      document.removeEventListener("keydown", closeMenuByEsc);
+    };
+  }, []);
 
   return (
     <>
@@ -50,14 +55,14 @@ function App() {
         setSearchlist={setSearchlist}
         setWatchlist={setWatchlist}
       />
-      <Routes basename='/IMDB-clone'>
-        <Route path="/IMDB-clone" element={<MainPage watchlist={watchlist}
+      <Routes basename='/imdb-clone'>
+        <Route path="/imdb-clone" element={<MainPage watchlist={watchlist}
+          setWatchlist={setWatchlist} topPickMovies={topPickMovies} />} />
+        <Route path="/imdb-clone/watchlist" element={<MovieList movieList={watchlist}
           setWatchlist={setWatchlist} />} />
-        <Route path="/IMDB-clone/watchlist" element={<MovieList movieList={watchlist}
+        <Route path="/imdb-clone/search" element={<MovieList movieList={searchlist}
           setWatchlist={setWatchlist} />} />
-        <Route path="/IMDB-clone/search" element={<MovieList movieList={searchlist}
-          setWatchlist={setWatchlist} />} />
-        <Route path="/IMDB-clone/top-pick" element={<MovieList movieList={searchlist}
+        <Route path="/imdb-clone/top-pick" element={<MovieList movieList={topPickMovies}
           setWatchlist={setWatchlist} />} />
       </Routes>
       <Footer />
