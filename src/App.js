@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { getWatchlist } from './helpers/localStorage';
 import Header from './layout/Header';
 import Menu from './components/Menu';

@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 
 const MovieListSlider = ({
 	movieList,
-	watchlist,
 	topic,
 	topicDescr,
 	setWatchlist,
@@ -75,9 +74,9 @@ const MovieListSlider = ({
 					return (
 						<div key={`${movie.id}-${createAdditionlaId()}`}>
 							<MovieCard
-								key={`${movie.id}-${createAdditionlaId()}`}
 								movie={movie}
 								setWatchlist={setWatchlist}
+								key={`${movie.id}-${createAdditionlaId()}`}
 							/>
 						</div>
 					);

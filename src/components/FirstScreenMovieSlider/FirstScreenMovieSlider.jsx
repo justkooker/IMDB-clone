@@ -1,12 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { useResize } from '../../hooks/useResize';
-import {
-	isMovieInWatchlist,
-	addInWatchlist,
-	getWatchlist,
-	removeFromWatchlist
-} from '../../helpers/localStorage';
+import { createAdditionlaId } from '../../helpers/additionalId';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -15,11 +10,8 @@ import sprite from '../../assets/svg/icons-sprite.svg';
 import backdrop from '../../assets/img/black-texture.jpg';
 import background from '../../assets/img/first-screen-slider.jpg';
 import styles from './FirstScreenMovieSlider.module.scss';
-
 import IconSprite from '../IconSprite';
 import { PrevButton, NextButton } from '../SlickButtons/SlickButtons';
-import WatchlistIcon from '../WatchlistIcon';
-import { useState } from 'react';
 import MovieCard from '../MovieCard/MovieCard';
 
 const FIlmSLider = React.forwardRef((props, ref) => {
@@ -43,20 +35,8 @@ const FIlmSLider = React.forwardRef((props, ref) => {
 		]
 	};
 	const iconSize = useResize().width > 600 ? 72 : 54;
-	const [isInWatchlist, setIsInWatchlist] = useState(null);
-	const [isLoading, setIsLoading] = useState(false);
-	const toggleWatchlist = id => {
-		setIsLoading(true);
-		setTimeout(() => {
-			setIsLoading(false);
-		}, 500);
-		if (isMovieInWatchlist(id)) removeFromWatchlist(id);
-		else addInWatchlist(id);
-		setIsInWatchlist(!isInWatchlist);
-		setTimeout(() => {
-			setWatchlist(getWatchlist());
-		}, 500);
-	};
+
+	
 	return (
 		<div className={classNames(styles.sliderContainer, 'grid_column-span-2')}>
 			<Slider asNavFor={nav} ref={ref} {...settings}>
@@ -80,7 +60,10 @@ const FIlmSLider = React.forwardRef((props, ref) => {
 								alt='Movie poster'
 							/>
 							<div className={styles.info}>
-								<div className={styles.info__poster}>
+								<div
+									key={`${movie.id}-${createAdditionlaId()}`}
+									className={styles.info__poster}
+								>
 									<MovieCard
 										movie={movie}
 										previewMode={true}
