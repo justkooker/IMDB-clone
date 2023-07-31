@@ -1,9 +1,14 @@
+import React, { Dispatch, SetStateAction } from 'react';
 import classNames from 'classnames';
+import { IMovie } from '../FirstScreenMovieSlider/FirstScreenMovieSlider';
 import MovieCard from '../MovieCard/MovieCard';
 
 import styles from './MovieList.module.scss';
-
-const MovieList = ({ movieList, setWatchlist }) => {
+interface MovieListProps {
+	movieList: IMovie[];
+	setWatchlist: Dispatch<SetStateAction<IMovie[]>>;
+}
+const MovieList: React.FC<MovieListProps> = ({ movieList, setWatchlist }) => {
 	return (
 		<div className={classNames(styles.watchlist, 'container')}>
 			{movieList.length === 0 ? (

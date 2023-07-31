@@ -1,19 +1,36 @@
+import React from 'react';
 import { useState } from 'react';
 import styles from './WatchlistIcon.module.scss';
 import IconSprite from '../IconSprite';
 import sprite from '../../assets/svg/icons-sprite.svg';
-import scssVars from '../../styles/vars.scss';
+import scssVars from '../../styles/vars.module.scss';
 import ClipLoader from 'react-spinners/ClipLoader';
+type Position =
+	| 'absolute'
+	| 'relative'
+	| 'fixed'
+	| 'static'
+	| 'sticky'
+	| 'initial'
+	| 'inherit';
 
-const WatchlistIcon = ({
+interface WatchListIconProps {
+	width?: number;
+	height?: number;
+	position?: Position;
+	isInWatchlist?: boolean | undefined;
+	onClick?: React.MouseEventHandler<HTMLDivElement>;
+	isLoading?: boolean;
+}
+const WatchlistIcon: React.FC<WatchListIconProps> = ({
 	width,
 	height,
 	position = 'absolute',
-	isInWatchlist = null,
-	onClick = null,
+	isInWatchlist = false,
+	onClick,
 	isLoading = null
 }) => {
-	let plusWidth = width / 1.2;
+	let plusWidth = width !== undefined ? width / 1.2 : undefined;
 	const [isHover, setIsHover] = useState(false);
 
 	const handleMouseEnter = () => {
@@ -43,7 +60,7 @@ const WatchlistIcon = ({
 								? scssVars.bgTranspColorMain
 								: scssVars.bgTranspColorMainLighten
 						}
-						y='-17px'
+						y={-17}
 					/>
 				) : (
 					<IconSprite
@@ -54,7 +71,7 @@ const WatchlistIcon = ({
 						fillColor={
 							!isHover ? scssVars.decorColorMain : scssVars.decorColorMainDarken
 						}
-						y='-17px'
+						y={-17}
 					/>
 				)}
 			</div>

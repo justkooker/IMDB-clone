@@ -4,7 +4,8 @@ import styles from './Footer.module.scss';
 import mediaSprite from '../../assets/svg/media-sprite.svg';
 import sprite from '../../assets/svg/icons-sprite.svg';
 import amazonLogo from '../../assets/svg/amazon-logo.svg';
-import scssVars from '../../styles/vars.scss';
+import scssVars from '../../styles/vars.module.scss';
+
 
 const Footer = () => {
 	return (
@@ -13,8 +14,8 @@ const Footer = () => {
 				<ButtonLink
 					href='http://tiktok.com'
 					borderRadius='50%'
-					paddingTB='12px'
-					paddingLR='12px'
+					paddingTB={12}
+					paddingLR={12}
 				>
 					<IconSprite
 						sprite={mediaSprite}
@@ -28,8 +29,8 @@ const Footer = () => {
 				<ButtonLink
 					href='http://instagram.com'
 					borderRadius='50%'
-					paddingTB='12px'
-					paddingLR='12px'
+					paddingTB={12}
+					paddingLR={12}
 				>
 					<IconSprite
 						sprite={mediaSprite}
@@ -43,8 +44,8 @@ const Footer = () => {
 				<ButtonLink
 					href='http://twitter.com'
 					borderRadius='50%'
-					paddingTB='12px'
-					paddingLR='12px'
+					paddingTB={12}
+					paddingLR={12}
 				>
 					<IconSprite
 						sprite={mediaSprite}
@@ -58,8 +59,8 @@ const Footer = () => {
 				<ButtonLink
 					href='http://youtube.com'
 					borderRadius='50%'
-					paddingTB='12px'
-					paddingLR='12px'
+					paddingTB={12}
+					paddingLR={12}
 				>
 					<IconSprite
 						sprite={mediaSprite}
@@ -73,8 +74,8 @@ const Footer = () => {
 				<ButtonLink
 					href='http://facebook.com'
 					borderRadius='50%'
-					paddingTB='12px'
-					paddingLR='12px'
+					paddingTB={12}
+					paddingLR={12}
 				>
 					<IconSprite
 						sprite={mediaSprite}

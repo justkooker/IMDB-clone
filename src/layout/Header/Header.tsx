@@ -1,6 +1,8 @@
+import React from 'react';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 import { useResize } from '../../hooks/useResize';
+import { IAppState } from '../../App';
 import Logo from '../../components/Logo';
 import Search from '../../components/Search';
 import BurgerButton from '../../components/BurgerButton/BurgerButton';
@@ -12,7 +14,15 @@ import LangButton from '../../components/LangButton/LangButton';
 import styles from './Header.module.scss';
 import imdbIcon from '../../assets/svg/imdb-pro-icon.svg';
 
-const Header = ({ toggleMenu, watchlist, setSearchlist }) => {
+interface IHeaderProps extends IAppState {
+
+}
+
+const Header: React.FC<IHeaderProps> = ({
+	toggleMenu,
+	watchlist,
+	setSearchlist
+}) => {
 	return (
 		<header className={styles.header}>
 			<div className={classNames('container', styles.header__container)}>
@@ -39,5 +49,3 @@ const Header = ({ toggleMenu, watchlist, setSearchlist }) => {
 	);
 };
 export default Header;
-
-//<span className={styles.separator}></span>

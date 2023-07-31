@@ -1,6 +1,10 @@
+import React from 'react';
 import styles from './SectionTitle.module.scss';
-
-const SectionTitle = ({ text, color }) => {
+interface ISectionTitle {
+	text: string;
+	color?: string;
+}
+const SectionTitle: React.FC<ISectionTitle> = ({ text, color }) => {
 	return (
 		<h3 style={{ color: color }} className={styles.title}>
 			{text}

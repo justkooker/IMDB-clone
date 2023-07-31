@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames';
 import { useResize } from '../../hooks/useResize';
 import { createAdditionlaId } from '../../helpers/additionalId';
@@ -13,9 +13,26 @@ import styles from './FirstScreenMovieSlider.module.scss';
 import IconSprite from '../IconSprite';
 import { PrevButton, NextButton } from '../SlickButtons/SlickButtons';
 import MovieCard from '../MovieCard/MovieCard';
+interface IFilmSliderProps {
+	popularMovies: IMovie[];
+	nav: Slider | undefined;
+	setWatchlist: React.Dispatch<React.SetStateAction<IMovie[]>>;
+	sliderRef: React.MutableRefObject<Slider | null>;
+}
+export interface IMovie {
+	id: string;
+	title: string;
+	backdrop_path: string | null;
+	poster_path: string;
+	vote_average: string;
+	
+}
+const FirstScreenMovieSlider: React.FC<IFilmSliderProps> = props => {
+	const { popularMovies, nav, setWatchlist, sliderRef } = props;
+	let iconSize = useResize().width > 600 ? 72 : 54;
 
-const FIlmSLider = React.forwardRef((props, ref) => {
-	const { popularMovies, nav, setWatchlist } = props;
+
+
 	const settings = {
 		dots: false,
 		infinite: true,
@@ -32,14 +49,13 @@ const FIlmSLider = React.forwardRef((props, ref) => {
 					arrows: false
 				}
 			}
-		]
+		],
+		withRef: true
 	};
-	const iconSize = useResize().width > 600 ? 72 : 54;
 
-	
 	return (
 		<div className={classNames(styles.sliderContainer, 'grid_column-span-2')}>
-			<Slider asNavFor={nav} ref={ref} {...settings}>
+			<Slider asNavFor={nav} ref={sliderRef} {...settings}>
 				{popularMovies.map(movie => {
 					const backgroundImage =
 						movie.backdrop_path === null
@@ -91,5 +107,5 @@ const FIlmSLider = React.forwardRef((props, ref) => {
 			</Slider>
 		</div>
 	);
-});
-export default FIlmSLider;
+};
+export default FirstScreenMovieSlider;

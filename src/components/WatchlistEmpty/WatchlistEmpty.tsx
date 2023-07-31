@@ -1,10 +1,16 @@
+import React from 'react';
 import WatchlistIcon from '../WatchlistIcon';
 import styles from './WatchlistEmpty.module.scss';
-import scssVars from '../../styles/vars.scss';
+import scssVars from '../../styles/vars.module.scss';
 import { Button } from '../Button/Button';
 import { Link } from 'react-router-dom';
 
-const WatchlistEmpty = ({ width, height }) => {
+interface WatchlistEmptyProps {
+	width?: number;
+	height?: number;
+}
+
+const WatchlistEmpty: React.FC<WatchlistEmptyProps> = ({ width, height }) => {
 	return (
 		<div className={styles.container}>
 			<Link to={'/IMDB-clone/watchlist'}>

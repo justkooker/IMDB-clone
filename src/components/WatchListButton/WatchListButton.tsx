@@ -1,10 +1,16 @@
+import React from 'react';
 import styles from './WatchListButton.module.scss';
-// import btnIcon from '../../assets/svg/watch-list-icon.svg';
+import { IMovie } from '../FirstScreenMovieSlider/FirstScreenMovieSlider';
 import IconSprite from '../IconSprite';
 import sprite from '../../assets/svg/icons-sprite.svg';
-import scssVars from '../../styles/vars.scss';
+import scssVars from '../../styles/vars.module.scss';
 import { Button } from '../Button/Button';
-const WatchListButton = ({ watchlist }) => {
+
+interface WatchListButtonProps {
+	watchlist?: IMovie[];
+}
+
+const WatchListButton: React.FC<WatchListButtonProps> = ({ watchlist }) => {
 	return (
 		<Button>
 			<IconSprite
@@ -16,7 +22,7 @@ const WatchListButton = ({ watchlist }) => {
 			/>
 			<span>Watchlist</span>
 			<span className={styles.watchlistLength}>
-				{watchlist.length > 0 && watchlist.length}
+				{watchlist!.length > 0 && watchlist!.length}
 			</span>
 		</Button>
 	);

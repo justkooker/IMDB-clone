@@ -1,14 +1,25 @@
 import React from 'react';
 import classNames from 'classnames';
 import Slider from 'react-slick';
+import { IMovie } from '../FirstScreenMovieSlider/FirstScreenMovieSlider';
 import IconSprite from '../IconSprite';
 
 import styles from './NextMovieSlider.module.scss';
-import scssVars from '../../styles/vars.scss';
+import scssVars from '../../styles/vars.module.scss';
 import sprite from '../../assets/svg/icons-sprite.svg';
 import ArrowTopic from '../ArrowTopic';
 
-const NextMovieSlider = React.forwardRef(({ popularMovies, nav }, ref) => {
+interface INextMovieSliderProps {
+	popularMovies: IMovie[];
+	nav: Slider | undefined;
+	sliderRef: React.MutableRefObject<Slider | null>;
+}
+const NextMovieSlider: React.FC<INextMovieSliderProps> = ({
+	popularMovies,
+	nav,
+	sliderRef
+}) => {
+
 	const settings = {
 		dots: false,
 		infinite: true,
@@ -27,7 +38,7 @@ const NextMovieSlider = React.forwardRef(({ popularMovies, nav }, ref) => {
 		<div className={styles.nextFilm}>
 			<p className={styles.title}>Up next</p>
 			<div className={classNames(styles.sliderContainer, 'grid_column-span-1')}>
-				<Slider asNavFor={nav} ref={ref} {...settings}>
+				<Slider asNavFor={nav} ref={sliderRef} {...settings}>
 					{popularMovies.length > 0
 						? popularMovies.map(movie => {
 								return (
@@ -68,6 +79,6 @@ const NextMovieSlider = React.forwardRef(({ popularMovies, nav }, ref) => {
 			/>
 		</div>
 	);
-});
+};
 
 export default NextMovieSlider;

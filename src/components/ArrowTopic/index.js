@@ -1,1 +1,1 @@
-export { default } from './ArrowTopic';
+export { default } from './ArrowTopic.tsx';

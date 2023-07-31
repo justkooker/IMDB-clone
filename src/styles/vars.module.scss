@@ -1,0 +1,16 @@
+@import './vars.scss';
+
+:export {
+    colorMain: $color-main;
+    colorMainTransparent:$color-main-transparent;
+    bgColorMain: $bg-color-main;
+    bgColorMainDarken: $bg-color-main-darken;
+    bgColorMainLighten: $bg-color-main-lighten;
+    bgTranspColorMain: $bg-transp-color-main;
+    bgTranspColorMainLighten: $bg-transp-color-main-lighten;
+    bgTranspColorMainDarken: $bg-transp-color-main-darken;
+    decorColorMain: $decoration-color-main;
+    decorColorSecondary: $decoration-color-secondary;
+    decorColorMainDarken: $decoration-color-main-darken;
+    decorColorMainLighten: $decoration-color-main-lighten;
+}

@@ -1,21 +1,29 @@
-import { useEffect, useRef } from 'react';
-import Slider from 'react-slick';
+import React, { useEffect, useRef } from 'react';
+import Slider, { Settings } from 'react-slick';
+import { Link } from 'react-router-dom';
+import { IMovie } from '../FirstScreenMovieSlider/FirstScreenMovieSlider';
 import { createAdditionlaId } from '../../helpers/additionalId';
 import MovieCard from '../MovieCard/MovieCard';
 import { PrevButton, NextButton } from '../SlickButtons/SlickButtons';
 import ArrowTopic from '../ArrowTopic';
 import styles from './MovieListSlider.module.scss';
-import { Link } from 'react-router-dom';
-
-const MovieListSlider = ({
-	movieList,
+interface MovieListSliderProps {
+	movieList?: IMovie[] | [];
+	topic?: string;
+	topicDescr?: string;
+	setWatchlist: React.Dispatch<React.SetStateAction<IMovie[]>>;
+	linkTo?: string;
+	customSettings?: Settings;
+}
+const MovieListSlider: React.FC<MovieListSliderProps> = ({
+	movieList = [],
 	topic,
 	topicDescr,
 	setWatchlist,
 	linkTo,
 	customSettings = {}
 }) => {
-	const sliderRef = useRef(null);
+	const sliderRef = useRef<Slider>(null);
 	const settings = {
 		...customSettings,
 		...{
@@ -58,15 +66,15 @@ const MovieListSlider = ({
 	};
 
 	useEffect(() => {
+
 		if (sliderRef.current) {
-			const track = sliderRef.current.innerSlider.track.node;
-			track.style.marginLeft = '0';
+			sliderRef.current.slickGoTo(0, true);
 		}
 	}, []);
 
 	return (
 		<div className={styles.sliderContainer}>
-			<Link to={`/imdb-clone/${linkTo}`}>
+			<Link to={`/${linkTo}`}>
 				<ArrowTopic topic={topic} topicDescr={topicDescr} arrow={true} />
 			</Link>
 			<Slider {...settings} ref={sliderRef}>

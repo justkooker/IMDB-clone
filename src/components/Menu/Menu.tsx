@@ -1,33 +1,45 @@
+import React from 'react';
 import classNames from 'classnames';
 import { useResize } from '../../hooks/useResize';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-
 import styles from './Menu.module.scss';
 import sprite from '../../assets/svg/icons-sprite.svg';
-import scssVars from '../../styles/vars.scss';
+import scssVars from '../../styles/vars.module.scss';
 import IconSprite from '../IconSprite';
 import MenuItem from '../MenuItem/MenuItem';
 
-const Menu = ({ toggleMenu, isOpenMenu }) => {
+export interface IMenuProps  {
+	isHovered?: boolean;
+	activeItemId: string;
+	toggleItem: (e: React.MouseEvent<HTMLElement>) => void;
+	toggleHoverState: () => void;
+	isOpenMenu?: boolean;
+	watchlist?: object[];
+	searchlist?: object[];
+	topPickMovies?: object[];
+	toggleMenu?: () => void;
+	closeMenuByEsc?: () => void;
+}
+
+const Menu: React.FC<IMenuProps> = ({ toggleMenu, isOpenMenu }) => {
 	const body = document.body;
-	const [activeItemId, setActiveItemId] = useState(null);
+	const [activeItemId, setActiveItemId] = useState('');
 	const [isHovered, setIsHovered] = useState(false);
 	useEffect(() => {
 		body.style.overflow = isOpenMenu ? 'hidden' : 'visible';
 	}, [isOpenMenu]);
-	const toggleItem = e => {
+	const toggleItem = (e: React.MouseEvent<HTMLElement>) => {
 		if (activeItemId === null || activeItemId !== e.currentTarget.id) {
 			setActiveItemId(e.currentTarget.id);
 			return;
 		}
-		setActiveItemId(null);
+		setActiveItemId('');
 	};
 
 	const toggleHoverState = () => {
 		setIsHovered(!isHovered);
 	};
-	
+
 	return (
 		<>
 			<div
@@ -66,7 +78,6 @@ const Menu = ({ toggleMenu, isOpenMenu }) => {
 						title='Movies'
 						toggleHoverState={toggleHoverState}
 						toggleItem={toggleItem}
-						isHovered={isHovered}
 						activeItemId={activeItemId}
 					>
 						<dd>
@@ -99,7 +110,6 @@ const Menu = ({ toggleMenu, isOpenMenu }) => {
 						id='tv'
 						toggleHoverState={toggleHoverState}
 						toggleItem={toggleItem}
-						isHovered={isHovered}
 						activeItemId={activeItemId}
 						title='TV Shows'
 					>
@@ -127,7 +137,6 @@ const Menu = ({ toggleMenu, isOpenMenu }) => {
 						id='awards'
 						toggleHoverState={toggleHoverState}
 						toggleItem={toggleItem}
-						isHovered={isHovered}
 						activeItemId={activeItemId}
 						title='Awards & Events'
 					>
@@ -163,7 +172,6 @@ const Menu = ({ toggleMenu, isOpenMenu }) => {
 						id='celebs'
 						toggleHoverState={toggleHoverState}
 						toggleItem={toggleItem}
-						isHovered={isHovered}
 						activeItemId={activeItemId}
 						title='Celebs'
 					>
@@ -181,7 +189,6 @@ const Menu = ({ toggleMenu, isOpenMenu }) => {
 						id='watch'
 						toggleHoverState={toggleHoverState}
 						toggleItem={toggleItem}
-						isHovered={isHovered}
 						activeItemId={activeItemId}
 						title='Watch'
 					>
@@ -205,7 +212,6 @@ const Menu = ({ toggleMenu, isOpenMenu }) => {
 						id='community'
 						toggleHoverState={toggleHoverState}
 						toggleItem={toggleItem}
-						isHovered={isHovered}
 						activeItemId={activeItemId}
 						title='Community'
 					>

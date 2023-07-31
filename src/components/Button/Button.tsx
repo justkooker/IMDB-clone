@@ -1,6 +1,22 @@
+import React from 'react';
 import styles from './Button.module.scss';
 
-export const Button = ({
+interface IButtonProps {
+	onClick?: () => void;
+	onKeyDown?: () => void;
+	height?: string;
+	width?: string;
+	children?: string | JSX.Element | JSX.Element[];
+	textColor?: string;
+	borderRadius?: string;
+	paddingTB?: number;
+	paddingLR?: number;
+	customStyles?: object;
+}
+interface IButtonLinkProps extends IButtonProps {
+	href: string;
+}
+export const Button: React.FC<IButtonProps> = ({
 	onClick,
 	onKeyDown,
 	height = 'auto',
@@ -31,7 +47,7 @@ export const Button = ({
 	);
 };
 
-export const ButtonLink = ({
+export const ButtonLink: React.FC<IButtonLinkProps> = ({
 	onClick,
 	children,
 	textColor,
@@ -39,8 +55,8 @@ export const ButtonLink = ({
 	height = 'auto',
 	href,
 	borderRadius = '6px',
-	paddingTB = '5px',
-	paddingLR = '16px'
+	paddingTB = 5,
+	paddingLR = 16
 }) => {
 	return (
 		<a
@@ -48,7 +64,7 @@ export const ButtonLink = ({
 			style={{
 				color: textColor,
 				borderRadius: borderRadius,
-				padding: `${paddingTB} ${paddingLR}`,
+				padding: `${paddingTB}px ${paddingLR}px`,
 				height: height,
 				width: width
 			}}

@@ -1,10 +1,21 @@
+import React from 'react';
 import IconSprite from '../IconSprite';
 import sprite from '../../assets/svg/icons-sprite.svg';
-import scssVars from '../../styles/vars.scss';
+import scssVars from '../../styles/vars.module.scss';
 import styles from './ArrowTopic.module.scss';
 import { useState } from 'react';
 
-const ArrowTopick = ({
+interface ArrowTopickProps {
+	topic: string;
+	topicDescr: string;
+	fontSize: string;
+	arrow: boolean;
+	hoverCursor: boolean;
+	hoverColor: string;
+	separator: boolean;
+	arrowSize: number;
+}
+const ArrowTopick: React.FC<ArrowTopickProps> = ({
 	topic,
 	topicDescr = '',
 	fontSize,
@@ -40,7 +51,7 @@ const ArrowTopick = ({
 						sprite={sprite}
 						id='arrow'
 						fillColor={scssVars.colorMain}
-						hoverFillColor={scssVars.decorationColorMain}
+						// hoverFillColor={scssVars.decorationColorMain}
 						width={arrowSize}
 						height={arrowSize}
 					/>

@@ -1,10 +1,23 @@
+import React from 'react';
 import { useResize } from '../../hooks/useResize';
 import { Button } from '../Button/Button';
 import { Link } from 'react-router-dom';
 import IconSprite from '../IconSprite';
 import sprite from '../../assets/svg/icons-sprite.svg';
-import scssVars from '../../styles/vars.scss';
-const SearchButton = ({ query, toggleInput, isActiveInput, getSearchlist }) => {
+import scssVars from '../../styles/vars.module.scss';
+interface ISearchButtonProps {
+	// query: string;
+	toggleInput: () => void;
+	isActiveInput: boolean;
+	getSearchlist: () => void;
+}
+
+const SearchButton: React.FC<ISearchButtonProps> = ({
+	// query,
+	toggleInput,
+	isActiveInput,
+	getSearchlist
+}) => {
 	return (
 		<>
 			{useResize().width > 601 ? (
@@ -31,7 +44,7 @@ const SearchButton = ({ query, toggleInput, isActiveInput, getSearchlist }) => {
 					onClick={toggleInput}
 					borderRadius='50%'
 					paddingTB={16}
-					query={query}
+					// query={query}
 				>
 					<IconSprite
 						sprite={sprite}
@@ -46,8 +59,8 @@ const SearchButton = ({ query, toggleInput, isActiveInput, getSearchlist }) => {
 				<Button
 					onClick={toggleInput}
 					borderRadius='50%'
-					paddingTB='12px'
-					paddingLR='12px'
+					paddingTB={12}
+					paddingLR={12}
 					customStyles={{
 						position: 'absolute',
 						top: isActiveInput ? '50%' : '-100%',

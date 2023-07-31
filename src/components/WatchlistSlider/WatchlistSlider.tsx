@@ -1,11 +1,19 @@
+import React from 'react';
+import { IMovie } from '../FirstScreenMovieSlider/FirstScreenMovieSlider';
 import styles from './WatchlistSlider.module.scss';
 import MovieListSlider from '../MovieListSlider';
 import WatchlistEmpty from '../WatchlistEmpty';
-
-const WatchlistSlider = ({ watchlist, setWatchlist }) => {
+interface WatchlistSliderProps {
+	watchlist?: IMovie[];
+	setWatchlist: React.Dispatch<React.SetStateAction<IMovie[]>>;
+}
+const WatchlistSlider: React.FC<WatchlistSliderProps> = ({
+	watchlist,
+	setWatchlist
+}) => {
 	return (
 		<div className='container'>
-			{watchlist.length > 0 ? (
+			{watchlist!.length > 0 ? (
 				<MovieListSlider
 					movieList={watchlist}
 					linkTo='watchlist'

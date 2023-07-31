@@ -1,3 +1,5 @@
+import React from 'react';
+import { IMovie } from '../FirstScreenMovieSlider/FirstScreenMovieSlider';
 import { Button } from '../Button/Button';
 import IconSprite from '../IconSprite';
 import WatchlistIcon from '../WatchlistIcon';
@@ -6,15 +8,23 @@ import sprite from '../../assets/svg/icons-sprite.svg';
 import { useState } from 'react';
 import ClipLoader from 'react-spinners/ClipLoader';
 import backdrop from '../../assets/img/no-image-card.png';
-import scssVars from '../../styles/vars.scss';
+import scssVars from '../../styles/vars.module.scss';
 import {
 	isMovieInWatchlist,
 	addInWatchlist,
 	getWatchlist,
 	removeFromWatchlist
 } from '../../helpers/localStorage';
-
-const MovieCard = ({ movie, setWatchlist, previewMode = false }) => {
+interface IMovieCardProps {
+	movie: IMovie;
+	setWatchlist: React.Dispatch<React.SetStateAction<IMovie[]>>;
+	previewMode?: boolean;
+}
+const MovieCard: React.FC<IMovieCardProps> = ({
+	movie,
+	setWatchlist,
+	previewMode = false
+}) => {
 	const {
 		id = '',
 		poster_path = '',
@@ -27,7 +37,7 @@ const MovieCard = ({ movie, setWatchlist, previewMode = false }) => {
 	);
 	const [isLoading, setIsLoading] = useState(false);
 
-	const toggleWatchlist = id => {
+	const toggleWatchlist = (id: string) => {
 		setIsLoading(true);
 		setTimeout(() => {
 			setIsLoading(false);

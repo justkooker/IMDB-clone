@@ -1,3 +1,4 @@
+import React from 'react';
 import { getMoviesByQuery } from '../../helpers/requests';
 import styles from './Search.module.scss';
 import classNames from 'classnames';
@@ -6,13 +7,18 @@ import CustomSelect from '../CustomSelect/CustomSelect';
 import { useResize } from '../../hooks/useResize';
 import SearchButton from '../SearchButton/SearchButton';
 import { useNavigate } from 'react-router';
+import { IAppState } from '../../App';
 
-const Search = ({ setSearchlist }) => {
+interface ISearchProps  {
+	setSearchlist: React.Dispatch<React.SetStateAction<never[]>>;
+}
+
+const Search: React.FC<ISearchProps> = ({ setSearchlist }) => {
 	const [isActiveInput, setIsActiveInput] = useState(false);
 	const [query, setQuery] = useState('');
 	const [selectType, setSelectType] = useState('all');
 	const navigate = useNavigate();
-	const onInputChange = e => {
+	const onInputChange: React.ChangeEventHandler<HTMLInputElement> = e => {
 		setQuery(e.target.value);
 	};
 	const toggleInput = () => {
@@ -25,11 +31,14 @@ const Search = ({ setSearchlist }) => {
 		navigate('/imdb-clone/search/');
 		return;
 	};
-	const getSearchlistByEnter = async e => {
+	const getSearchlistByEnter: React.KeyboardEventHandler<
+		HTMLInputElement
+	> = async e => {
 		if (query === '') return;
 		if (e.key === 'Enter') {
 			const response = await getMoviesByQuery(query, selectType);
 			setSearchlist(response);
+			console.log(response);
 			navigate('/imdb-clone/search/');
 			return;
 		}
@@ -51,9 +60,9 @@ const Search = ({ setSearchlist }) => {
 			<SearchButton
 				getSearchlist={getSearchlist}
 				toggleInput={toggleInput}
-				query={query}
+				// query={query}
 				isActiveInput={isActiveInput}
-				selectType={selectType}
+				// selectType={selectType}
 			/>
 		</div>
 	);

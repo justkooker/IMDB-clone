@@ -1,16 +1,24 @@
+import React from 'react';
 import classNames from 'classnames';
 import IconSprite from '../IconSprite';
 import sprite from '../../assets/svg/icons-sprite.svg';
 import styles from './SlickButtons.module.scss';
 
-export const PrevButton = props => {
-	const {
-		onClick,
-		top = null,
-		right = null,
-		bottom = null,
-		left = null
-	} = props;
+interface ButtonProps {
+	top?: string;
+	right?: string;
+	bottom?: string;
+	left?: string;
+	style?: React.CSSProperties;
+	onClick?: () => void;
+}
+export const PrevButton: React.FC<ButtonProps> = ({
+	onClick,
+	top,
+	right,
+	bottom,
+	left
+}) => {
 	const style = {
 		top,
 		right,
@@ -27,14 +35,13 @@ export const PrevButton = props => {
 		</div>
 	);
 };
-export const NextButton = props => {
-	const {
-		onClick,
-		top = null,
-		right = null,
-		bottom = null,
-		left = null
-	} = props;
+export const NextButton: React.FC<ButtonProps> = ({
+	onClick,
+	top,
+	right,
+	bottom,
+	left
+}) => {
 	const style = {
 		top,
 		right,
