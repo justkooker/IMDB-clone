@@ -1,27 +1,19 @@
-import React from 'react';
 import classNames from 'classnames';
 import { useResize } from '../../hooks/useResize';
 import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styles from './Menu.module.scss';
 import sprite from '../../assets/svg/icons-sprite.svg';
 import scssVars from '../../styles/vars.module.scss';
 import IconSprite from '../IconSprite';
 import MenuItem from '../MenuItem/MenuItem';
+import { RootState } from '../../redux/store';
+import { toggleMenu } from '../../redux/menu';
 
-export interface IMenuProps  {
-	isHovered?: boolean;
-	activeItemId: string;
-	toggleItem: (e: React.MouseEvent<HTMLElement>) => void;
-	toggleHoverState: () => void;
-	isOpenMenu?: boolean;
-	watchlist?: object[];
-	searchlist?: object[];
-	topPickMovies?: object[];
-	toggleMenu?: () => void;
-	closeMenuByEsc?: () => void;
-}
+const Menu = () => {
+	const dispatch = useDispatch();
+	const isOpenMenu = useSelector((state: RootState) => state.menu.isOpenMenu);
 
-const Menu: React.FC<IMenuProps> = ({ toggleMenu, isOpenMenu }) => {
 	const body = document.body;
 	const [activeItemId, setActiveItemId] = useState('');
 	const [isHovered, setIsHovered] = useState(false);
@@ -43,12 +35,12 @@ const Menu: React.FC<IMenuProps> = ({ toggleMenu, isOpenMenu }) => {
 	return (
 		<>
 			<div
-				onClick={toggleMenu}
+				onClick={() => dispatch(toggleMenu())}
 				className={styles.background}
 				style={{ display: !isOpenMenu ? 'none' : 'block' }}
 			></div>
 			<nav
-				onKeyDown={toggleMenu}
+				onKeyDown={() => dispatch(toggleMenu())}
 				className={classNames(
 					styles.navMenu,
 					isOpenMenu ? styles.navMenu_opened : styles.navMenu_closed
@@ -58,7 +50,10 @@ const Menu: React.FC<IMenuProps> = ({ toggleMenu, isOpenMenu }) => {
 					{useResize().width > 1024 && (
 						<IconSprite sprite={sprite} id={'logo'} width={98} height={56} />
 					)}
-					<div className={styles.navHeader__closeBtn} onClick={toggleMenu}>
+					<div
+						className={styles.navHeader__closeBtn}
+						onClick={() => dispatch(toggleMenu())}
+					>
 						<IconSprite
 							sprite={sprite}
 							id={'close-menu'}

@@ -1,23 +1,26 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
-
 import classNames from 'classnames';
 import { useResize } from '../../hooks/useResize';
 import Slider from 'react-slick';
 import { IMovie } from '../../components/FirstScreenMovieSlider/FirstScreenMovieSlider';
 import FirstScreenMovieSlider from '../../components/FirstScreenMovieSlider';
 import NextMovieSlider from '../../components/NextMovieSlider';
+import { getPopularMovies } from '../../helpers/requests';
 import styles from './FirstScreen.module.scss';
 
-interface IFirstScreen {
-	popularMovies: IMovie[];
-	popularMoviesSlider2: IMovie[];
-	setWatchlist: React.Dispatch<React.SetStateAction<IMovie[]>>;
-}
-const FirstScreen: React.FC<IFirstScreen> = ({
-	popularMovies,
-	popularMoviesSlider2,
-	setWatchlist
-}) => {
+const FirstScreen = () => {
+	const [popularMovies, setPopularMovies] = useState([]);
+	const [popularMoviesSlider2, setPopularMoviesSlider2] = useState([]);
+
+	useEffect(() => {
+		getPopularMovies().then(movies => setPopularMovies(movies));
+	}, []);
+	useEffect(() => {
+		if (popularMovies.length > 0) {
+			const [firstElement, secondElement, ...rest] = popularMovies;
+			setPopularMoviesSlider2([...rest, firstElement, secondElement]);
+		}
+	}, [popularMovies]);
 	const [nav1, setNav1] = useState<Slider | null>(null);
 	const [nav2, setNav2] = useState<Slider | null>(null);
 
@@ -41,16 +44,13 @@ const FirstScreen: React.FC<IFirstScreen> = ({
 		}
 	}, [setNav1Callback]);
 
-
 	const screenWidth = useResize().width;
-console.log(nav1);
 	return (
 		<section className={classNames('container', styles.banner)}>
 			<FirstScreenMovieSlider
 				nav={nav2 || undefined}
 				sliderRef={slider1}
 				popularMovies={popularMovies}
-				setWatchlist={setWatchlist}
 			/>
 			{screenWidth > 1024 && (
 				<NextMovieSlider

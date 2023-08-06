@@ -1,4 +1,9 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import {
+	updateWatchlist
+} from '../../redux/watchlist';
+
 import { IMovie } from '../FirstScreenMovieSlider/FirstScreenMovieSlider';
 import { Button } from '../Button/Button';
 import IconSprite from '../IconSprite';
@@ -15,14 +20,13 @@ import {
 	getWatchlist,
 	removeFromWatchlist
 } from '../../helpers/localStorage';
+
 interface IMovieCardProps {
 	movie: IMovie;
-	setWatchlist: React.Dispatch<React.SetStateAction<IMovie[]>>;
 	previewMode?: boolean;
 }
 const MovieCard: React.FC<IMovieCardProps> = ({
 	movie,
-	setWatchlist,
 	previewMode = false
 }) => {
 	const {
@@ -31,7 +35,7 @@ const MovieCard: React.FC<IMovieCardProps> = ({
 		title = '',
 		vote_average = ''
 	} = movie || {};
-
+	const dispatch = useDispatch();
 	const [isInWatchlist, setIsInWatchlist] = useState(() =>
 		isMovieInWatchlist(id)
 	);
@@ -42,11 +46,15 @@ const MovieCard: React.FC<IMovieCardProps> = ({
 		setTimeout(() => {
 			setIsLoading(false);
 		}, 500);
-		if (isMovieInWatchlist(id)) removeFromWatchlist(id);
-		else addInWatchlist(id);
+		if (isMovieInWatchlist(id)) {
+			removeFromWatchlist(id);
+		} else {
+			addInWatchlist(id);
+		}
 		setIsInWatchlist(!isInWatchlist);
 		setTimeout(() => {
-			setWatchlist(getWatchlist());
+			const watchlist = getWatchlist();
+			dispatch(updateWatchlist(watchlist));
 		}, 500);
 	};
 

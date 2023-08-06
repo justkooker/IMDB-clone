@@ -1,17 +1,18 @@
-import React from 'react';
-import { IAppState } from '../../App';
+import { useDispatch } from 'react-redux';
+import { toggleMenu } from '../../redux/menu';
 import { useResize } from '../../hooks/useResize';
 import styles from './BurgerButton.module.scss';
 import burgerIcon from '../../assets/svg/burger-icon.svg';
 import { Button } from '../Button/Button';
 
-interface IBurgerButtonProps {
-	toggleMenu?: () => void | undefined;
-}
-const BurgerButton: React.FC<IBurgerButtonProps> = ({ toggleMenu }) => {
+const BurgerButton = () => {
+	const dispatch = useDispatch();
 	return (
 		<div className={styles.container}>
-			<Button onClick={toggleMenu} paddingTB={useResize().width > 601 ? 6 : 16}>
+			<Button
+				onClick={() => dispatch(toggleMenu())}
+				paddingTB={useResize().width > 601 ? 6 : 16}
+			>
 				<>
 					<img
 						src={burgerIcon}

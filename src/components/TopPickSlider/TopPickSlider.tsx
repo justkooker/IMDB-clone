@@ -1,5 +1,3 @@
-import React, { Dispatch, SetStateAction } from 'react';
-import { IMovie } from '../FirstScreenMovieSlider/FirstScreenMovieSlider';
 import { Button } from '../Button/Button';
 import IconSprite from '../IconSprite';
 import SectionTitle from '../SectionTitle';
@@ -7,15 +5,13 @@ import styles from './TopPickSlider.module.scss';
 import sprite from '../../assets/svg/icons-sprite.svg';
 import scssVars from '../../styles/vars.module.scss';
 import MovieListSlider from '../MovieListSlider';
+import { RootState } from '../../redux/store';
+import { useSelector } from 'react-redux';
 
-interface TopPickSliderProps {
-	movieList?: IMovie[];
-	setWatchlist: React.Dispatch<React.SetStateAction<IMovie[]>>;
-}
-const TopPickSlider: React.FC<TopPickSliderProps> = ({
-	movieList,
-	setWatchlist
-}) => {
+const TopPickSlider = () => {
+	const topPickMovies = useSelector(
+		(state: RootState) => state.topPickMovies.list
+	);
 	return (
 		<div className='container'>
 			<div className={styles.titleContainer}>
@@ -33,11 +29,10 @@ const TopPickSlider: React.FC<TopPickSliderProps> = ({
 			</div>
 
 			<MovieListSlider
-				movieList={movieList}
+				movieList={topPickMovies}
 				linkTo='top-pick'
 				topic='Top picks'
 				topicDescr='TV shows and movies just for you'
-				setWatchlist={setWatchlist}
 			/>
 		</div>
 	);

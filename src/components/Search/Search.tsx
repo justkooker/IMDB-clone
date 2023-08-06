@@ -7,13 +7,11 @@ import CustomSelect from '../CustomSelect/CustomSelect';
 import { useResize } from '../../hooks/useResize';
 import SearchButton from '../SearchButton/SearchButton';
 import { useNavigate } from 'react-router';
-import { IAppState } from '../../App';
+import { createSearchlist } from '../../redux/searchlist';
+import { useDispatch } from 'react-redux';
 
-interface ISearchProps  {
-	setSearchlist: React.Dispatch<React.SetStateAction<never[]>>;
-}
-
-const Search: React.FC<ISearchProps> = ({ setSearchlist }) => {
+const Search = () => {
+	const dispatch = useDispatch();
 	const [isActiveInput, setIsActiveInput] = useState(false);
 	const [query, setQuery] = useState('');
 	const [selectType, setSelectType] = useState('all');
@@ -27,8 +25,8 @@ const Search: React.FC<ISearchProps> = ({ setSearchlist }) => {
 	const getSearchlist = async () => {
 		if (query === '') return;
 		const response = await getMoviesByQuery(query, selectType);
-		setSearchlist(response);
-		navigate('/imdb-clone/search/');
+		dispatch(createSearchlist(response));
+		navigate('/search/');
 		return;
 	};
 	const getSearchlistByEnter: React.KeyboardEventHandler<
@@ -37,9 +35,8 @@ const Search: React.FC<ISearchProps> = ({ setSearchlist }) => {
 		if (query === '') return;
 		if (e.key === 'Enter') {
 			const response = await getMoviesByQuery(query, selectType);
-			setSearchlist(response);
-			console.log(response);
-			navigate('/imdb-clone/search/');
+			dispatch(createSearchlist(response));
+			navigate('/search/');
 			return;
 		}
 	};

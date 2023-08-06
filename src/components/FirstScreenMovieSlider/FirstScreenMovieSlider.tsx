@@ -1,4 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+
 import classNames from 'classnames';
 import { useResize } from '../../hooks/useResize';
 import { createAdditionlaId } from '../../helpers/additionalId';
@@ -13,10 +15,10 @@ import styles from './FirstScreenMovieSlider.module.scss';
 import IconSprite from '../IconSprite';
 import { PrevButton, NextButton } from '../SlickButtons/SlickButtons';
 import MovieCard from '../MovieCard/MovieCard';
+
 interface IFilmSliderProps {
 	popularMovies: IMovie[];
 	nav: Slider | undefined;
-	setWatchlist: React.Dispatch<React.SetStateAction<IMovie[]>>;
 	sliderRef: React.MutableRefObject<Slider | null>;
 }
 export interface IMovie {
@@ -28,7 +30,8 @@ export interface IMovie {
 	
 }
 const FirstScreenMovieSlider: React.FC<IFilmSliderProps> = props => {
-	const { popularMovies, nav, setWatchlist, sliderRef } = props;
+	const { popularMovies, nav, sliderRef } = props;
+	const dispatch = useDispatch();
 	let iconSize = useResize().width > 600 ? 72 : 54;
 
 
@@ -83,7 +86,6 @@ const FirstScreenMovieSlider: React.FC<IFilmSliderProps> = props => {
 									<MovieCard
 										movie={movie}
 										previewMode={true}
-										setWatchlist={setWatchlist}
 									/>
 								</div>
 								<div className='d-flex' style={{ gap: '10px' }}>

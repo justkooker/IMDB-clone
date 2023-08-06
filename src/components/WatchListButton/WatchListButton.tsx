@@ -1,16 +1,15 @@
-import React from 'react';
 import styles from './WatchListButton.module.scss';
+import { useSelector } from 'react-redux';
 import { IMovie } from '../FirstScreenMovieSlider/FirstScreenMovieSlider';
 import IconSprite from '../IconSprite';
 import sprite from '../../assets/svg/icons-sprite.svg';
 import scssVars from '../../styles/vars.module.scss';
 import { Button } from '../Button/Button';
+import { RootState } from '../../redux/store';
 
-interface WatchListButtonProps {
-	watchlist?: IMovie[];
-}
 
-const WatchListButton: React.FC<WatchListButtonProps> = ({ watchlist }) => {
+const WatchListButton = () => {
+	const watchlist = useSelector((state:RootState)=> state.watchlist.watchlist)
 	return (
 		<Button>
 			<IconSprite

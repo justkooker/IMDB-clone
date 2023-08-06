@@ -1,15 +1,12 @@
-import React from 'react';
-import { IMovie } from '../../components/FirstScreenMovieSlider/FirstScreenMovieSlider';
 import MovieList from '../../components/MovieList';
-interface WatchListPageProps {
-	movieList: IMovie[];
-	setWatchlist: React.Dispatch<React.SetStateAction<IMovie[]>>;
-}
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/store';
 
-const WatchListPage: React.FC<WatchListPageProps> = ({
-	movieList,
-	setWatchlist
-}) => {
-	return <MovieList movieList={movieList} setWatchlist={setWatchlist} />;
+const WatchListPage = () => {
+	const watchlist = useSelector(
+		(state: RootState) => state.watchlist.watchlist
+	);
+	console.log(watchlist);
+	return <MovieList movieList={watchlist} />;
 };
 export default WatchListPage;

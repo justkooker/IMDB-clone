@@ -11,7 +11,6 @@ interface MovieListSliderProps {
 	movieList?: IMovie[] | [];
 	topic?: string;
 	topicDescr?: string;
-	setWatchlist: React.Dispatch<React.SetStateAction<IMovie[]>>;
 	linkTo?: string;
 	customSettings?: Settings;
 }
@@ -19,7 +18,6 @@ const MovieListSlider: React.FC<MovieListSliderProps> = ({
 	movieList = [],
 	topic,
 	topicDescr,
-	setWatchlist,
 	linkTo,
 	customSettings = {}
 }) => {
@@ -83,7 +81,6 @@ const MovieListSlider: React.FC<MovieListSliderProps> = ({
 						<div key={`${movie.id}-${createAdditionlaId()}`}>
 							<MovieCard
 								movie={movie}
-								setWatchlist={setWatchlist}
 								key={`${movie.id}-${createAdditionlaId()}`}
 							/>
 						</div>
