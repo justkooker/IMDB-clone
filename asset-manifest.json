@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/imdb-clone/static/css/main.0489067c.css",
-    "main.js": "/imdb-clone/static/js/main.077ea04d.js",
+    "main.css": "/imdb-clone/static/css/main.a0c515cd.css",
+    "main.js": "/imdb-clone/static/js/main.e1d71dc1.js",
     "static/media/black-texture.jpg": "/imdb-clone/static/media/black-texture.7a72899a0e751ec1d69b.jpg",
     "static/media/first-screen-slider.jpg": "/imdb-clone/static/media/first-screen-slider.1a25e4ebcc306d821554.jpg",
     "static/media/stripes-background.jpg": "/imdb-clone/static/media/stripes-background.304c850e65645232f20e.jpg",
@@ -17,11 +17,11 @@
     "index.html": "/imdb-clone/index.html",
     "static/media/user-icon.svg": "/imdb-clone/static/media/user-icon.037fc7e0ef4a1d4fbb46c4354e4b6bd7.svg",
     "static/media/burger-icon.svg": "/imdb-clone/static/media/burger-icon.55da4753d31df14ba711790d14f8fd89.svg",
-    "main.0489067c.css.map": "/imdb-clone/static/css/main.0489067c.css.map",
-    "main.077ea04d.js.map": "/imdb-clone/static/js/main.077ea04d.js.map"
+    "main.a0c515cd.css.map": "/imdb-clone/static/css/main.a0c515cd.css.map",
+    "main.e1d71dc1.js.map": "/imdb-clone/static/js/main.e1d71dc1.js.map"
   },
   "entrypoints": [
-    "static/css/main.0489067c.css",
-    "static/js/main.077ea04d.js"
+    "static/css/main.a0c515cd.css",
+    "static/js/main.e1d71dc1.js"
   ]
 }
